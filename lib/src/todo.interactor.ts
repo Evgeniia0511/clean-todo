@@ -54,6 +54,11 @@ export class TodoInteractor {
 
   public addTodo(task: string): Promise<any> {
     return new Promise((resolve, reject) => {
+      if (!task) {
+        reject()
+        return
+      }
+
       let todo = new Todo({
         creationDate: new Date(),
         done: false,

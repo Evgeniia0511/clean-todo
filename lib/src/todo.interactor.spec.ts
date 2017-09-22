@@ -159,6 +159,18 @@ describe('TodoInteractor', () => {
 
       return sut.onPageLoad()
     })
+    
+    it('Should not ask the gateway to add the todo nor set the todo in the interactor if the task is an empty string', done => {
+      let spy = chai.spy.on(gateway, 'addTodo')
+
+      sut.addTodo('')
+        .catch(() => {
+          expect(spy).not.to.have.been.called
+          expect(sut.todos).to.have.lengthOf(1)
+
+          done()
+        })
+    })
 
     it('Should ask the gateway to add the todo', done => {
       gateway.addTodo = _todo => {
