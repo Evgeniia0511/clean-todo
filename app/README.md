@@ -1,27 +1,9 @@
-# Todo
+# App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.2.
+The app part contains the interface adapters layer as well as the frameworks and drivers.
 
-## Development server
+The entire `app` folder is a project generated with [Angular CLI](https://github.com/angular/angular-cli).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+It is composed of the [view](https://github.com/QuodFinancial/clean-todo/blob/master/app/src/app/app.component.html) of our application. The [TodoInteractor](https://github.com/QuodFinancial/clean-todo/blob/master/lib/src/todo.interactor.ts) from the lib is instanciated by passing the [Gateway Service](https://github.com/QuodFinancial/clean-todo/blob/master/app/src/app/shared/gateway.service.ts) (that implements the [ITodoGateway interface](https://github.com/QuodFinancial/clean-todo/blob/master/lib/src/i-todo-gateway.interface.ts)) and the [controller](https://github.com/QuodFinancial/clean-todo/blob/master/app/src/app/app.component.ts#L21) (that implements the [ITodoController interface](https://github.com/QuodFinancial/clean-todo/blob/master/lib/src/i-todo-controller.interface.ts)).
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+If we wanted to change the way the todos are stored, by doing AJAX calls to a backend for instance, the only impact would be on the [Gateway Service](https://github.com/QuodFinancial/clean-todo/blob/master/app/src/app/shared/gateway.service.ts) to do http calls. Any object that implements the ITodoGateway interface would work, as the interactor has no idea of the implementation of this data access.
